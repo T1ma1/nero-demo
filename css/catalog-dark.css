@@ -1,0 +1,94 @@
+/* ============================================================
+   NERO — тёмная тема страниц каталога.
+   Подключается ТОЛЬКО на catalog/*.html (после style.css), поэтому
+   главная страница не затрагивается. Палитра и приёмы — как на главной:
+   тёплый тёмный фон #15100c, кремовый текст, терракотовые акценты,
+   карточки-«стекло». Удаление этого <link> возвращает светлую тему.
+   ============================================================ */
+
+/* ── База страницы ── */
+body { background: #15100c; color: var(--on-dark); }
+
+/* ── Шапка (как на главной) ── */
+.header.is-scrolled { background: rgba(18, 13, 9, 0.85); border-bottom-color: rgba(241, 235, 224, 0.12); }
+.header__logo-img { filter: brightness(0) invert(1); opacity: 0.9; }
+.header__menu-hint { color: var(--on-dark); }
+.header__menu-arrow { color: var(--on-dark); }
+.burger span { background: var(--on-dark); }
+
+/* ── Меню-оверлей ── */
+.nav { background: rgba(16, 12, 8, 0.97); }
+.nav__link { color: var(--on-dark); }
+.nav__idx { color: var(--terra-lt); }
+
+/* ── Хедер-герой страницы: затемнённое фото, как секции главной ── */
+.cat-hero {
+  background: #15100c; position: relative; isolation: isolate; overflow: hidden;
+}
+.cat-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background: url("../assets/img/bg-catalog.jpg") center / cover no-repeat;
+}
+.cat-hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(180deg, rgba(18, 13, 9, 0.88) 0%, rgba(18, 13, 9, 0.8) 52%, #15100c 100%);
+}
+.cat-hero > .container { position: relative; z-index: 1; }
+.cat-hero__eyebrow { color: var(--terra-lt); }
+.cat-hero__title { color: var(--on-dark); }
+.cat-hero__lead { color: rgba(241, 235, 224, 0.82); }
+
+/* ── Хлебные крошки ── */
+.crumbs { color: rgba(241, 235, 224, 0.6); }
+.crumbs a { color: var(--terra-lt); }
+.crumbs a:hover { color: var(--on-dark); }
+.crumbs i { background: rgba(241, 235, 224, 0.25); }
+
+/* ── Кнопка «Скачать каталог (PDF)» ── */
+.catalog__pdf { border-color: rgba(241, 235, 224, 0.3); color: var(--on-dark); }
+.catalog__pdf:hover { background: var(--terra); color: var(--on-dark); border-color: var(--terra); }
+
+/* ── Карточки товаров — тёмное «стекло» ── */
+.product {
+  background: rgba(30, 22, 16, 0.55);
+  border-color: rgba(241, 235, 224, 0.12);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.38);
+}
+.product:hover { box-shadow: 0 22px 56px rgba(0, 0, 0, 0.5); }
+.product__media { background: rgba(20, 14, 9, 0.6); }
+.product__tag { color: var(--terra-lt); }
+.product__name { color: var(--on-dark); }
+.product__desc { color: rgba(241, 235, 224, 0.72); }
+.product__meta { color: rgba(241, 235, 224, 0.74); }
+.product__meta b { color: var(--on-dark); }
+.product__specs { color: rgba(241, 235, 224, 0.68); }
+.product__specs li { color: rgba(241, 235, 224, 0.68); }
+.product--doc .product__type { color: var(--terra-lt); }
+
+/* ── Низ страницы каталога ── */
+.cat-foot { border-top-color: rgba(241, 235, 224, 0.12); }
+.cat-back { color: rgba(241, 235, 224, 0.7); }
+.cat-back:hover { color: var(--on-dark); }
+
+/* ── Подвал (как на главной) ── */
+.footer { background: #120d09; border-top-color: rgba(241, 235, 224, 0.12); }
+.footer__logo { filter: brightness(0) invert(1); opacity: 0.9; }
+.footer__tagline,
+.footer__nav a,
+.footer__bottom span,
+.footer__doc { color: rgba(241, 235, 224, 0.7); }
+.footer__bottom { border-top-color: rgba(241, 235, 224, 0.1); }
+
+
+/* ── Плавающая WhatsApp-CTA на страницах каталога (конверсия) ── */
+.wa-fab {
+  position: fixed; right: clamp(16px,3.5vw,30px); bottom: clamp(16px,3.5vw,30px); z-index: 70;
+  width: 54px; height: 54px; border-radius: 50%;
+  background: var(--terra); color: var(--on-dark);
+  display: inline-flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 28px rgba(0,0,0,.42);
+  transition: background-color .3s var(--ease), transform .3s var(--ease);
+}
+.wa-fab:hover { background: var(--terra-lt); transform: translateY(-3px); }
+.wa-fab svg { width: 28px; height: 28px; }
+@media (max-width: 600px) { .wa-fab { width: 50px; height: 50px; } }

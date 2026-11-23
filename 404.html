@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — страница не найдена · NERO</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#e8dfd1" />
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#e8dfd1; --card:#f4eee4; --ink:#1d1916; --ink-dim:#645a50;
+      --terra:#9a5230; --on-dark:#f1ebe0; --line:rgba(29,25,22,.16);
+      --display:"Tenor Sans","Times New Roman",serif;
+      --body:"Jost",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --ease:cubic-bezier(.22,1,.36,1);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{height:100%}
+    body{
+      font-family:var(--body); background:var(--bg); color:var(--ink);
+      min-height:100svh; display:flex; flex-direction:column;
+      -webkit-font-smoothing:antialiased; position:relative; overflow-x:hidden;
+    }
+    /* зернистость, как в hero сайта */
+    body::before{
+      content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.045;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .e404{ position:relative; z-index:1; flex:1; display:flex; flex-direction:column; }
+
+    .e404__top{ padding:clamp(22px,4vw,40px) clamp(20px,5vw,80px); }
+    .e404__logo{ display:inline-block; color:var(--ink); transition:color .4s var(--ease); }
+    .e404__logo:hover{ color:var(--terra); }
+    .e404__logo svg{ width:76px; height:auto; display:block; }
+
+    .e404__main{
+      flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+      padding:0 clamp(20px,5vw,80px) clamp(40px,8vw,90px);
+    }
+    .e404__num{
+      font-family:var(--display); font-weight:400; line-height:.88; letter-spacing:-.02em;
+      font-size:clamp(7rem,27vw,19rem); color:var(--ink); margin-bottom:.18em;
+    }
+    .e404__num em{ font-style:italic; color:var(--terra); }
+    .e404__eyebrow{
+      font-size:.8rem; letter-spacing:.28em; text-transform:uppercase; color:var(--terra); margin-bottom:1.1rem;
+    }
+    .e404__title{
+      font-family:var(--display); font-weight:400; font-size:clamp(1.55rem,3.6vw,2.5rem);
+      color:var(--ink); margin-bottom:1rem; letter-spacing:-.01em;
+    }
+    .e404__sub{
+      max-width:470px; font-size:clamp(1rem,1.4vw,1.1rem); line-height:1.62;
+      color:var(--ink-dim); margin-bottom:2.4rem;
+    }
+    .e404__actions{ display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:15px 32px; border-radius:100px; position:relative; overflow:hidden;
+      font-family:var(--body); font-size:.8rem; letter-spacing:.1em; text-transform:uppercase;
+      text-decoration:none; transition:transform .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease);
+      z-index:0;
+    }
+    .btn::before{
+      content:""; position:absolute; inset:0; z-index:-1; background:var(--ink);
+      transform:translateY(101%); transition:transform .45s var(--ease);
+    }
+    .btn:hover::before{ transform:translateY(0); }
+    .btn:hover{ transform:translateY(-2px); }
+    .btn--solid{ background:var(--terra); color:var(--on-dark); }
+    .btn--ghost{ border:1px solid var(--line); color:var(--ink); }
+    .btn--ghost:hover{ color:var(--on-dark); border-color:var(--ink); }
+
+    .e404__foot{
+      padding:clamp(16px,3vw,28px) clamp(20px,5vw,80px);
+      display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+      font-size:.78rem; color:var(--ink-dim); border-top:1px solid var(--line);
+    }
+    .e404__foot a{ color:var(--ink-dim); text-decoration:none; transition:color .3s var(--ease); }
+    .e404__foot a:hover{ color:var(--terra); }
+
+    @media (prefers-reduced-motion:no-preference){
+      .reveal{ opacity:0; transform:translateY(18px); animation:rise .9s var(--ease) forwards; }
+      .reveal:nth-child(1){animation-delay:.05s} .reveal:nth-child(2){animation-delay:.14s}
+      .reveal:nth-child(3){animation-delay:.22s} .reveal:nth-child(4){animation-delay:.30s}
+      .reveal:nth-child(5){animation-delay:.38s}
+      @keyframes rise{ to{ opacity:1; transform:none; } }
+    }
+  </style>
+</head>
+<body>
+  <div class="e404">
+    <header class="e404__top">
+      <a href="/" class="e404__logo" aria-label="NERO — на главную">
+        <svg viewBox="314 367 396 238" fill="currentColor" role="img" aria-label="NERO">
+          <path d="M 663.89 593.94 C647.71,597.67 628.28,591.80 617.58,579.96 C607.26,568.54 603.28,549.28 607.83,532.86 C612.78,515.00 624.98,504.01 644.00,500.26 C682.82,492.61 712.36,533.19 694.50,569.64 C688.74,581.39 676.64,591.00 663.89,593.94 ZM 528.00 571.00 L 528.00 593.00 L 512.00 593.00 L 512.00 501.00 L 533.45 501.00 C556.21,501.00 562.62,501.80 570.11,505.57 C579.63,510.37 584.88,516.98 587.69,527.73 C591.40,541.95 584.58,558.58 572.50,564.73 C570.85,565.57 569.35,566.39 569.16,566.55 C568.72,566.94 585.11,591.30 586.45,592.23 C587.03,592.64 583.00,592.96 577.50,592.95 L 567.50 592.92 L 560.12 581.96 L 552.74 571.00 ZM 642.27 583.35 C647.99,585.37 657.58,585.36 663.56,583.32 C670.43,580.99 678.00,573.23 681.00,565.47 C684.41,556.63 684.89,543.30 682.13,534.21 C678.28,521.52 668.86,512.05 658.06,510.01 C647.57,508.03 635.00,512.13 629.65,519.27 C626.74,523.17 624.11,528.24 623.72,530.70 C623.57,531.69 623.12,533.02 622.72,533.66 C621.32,535.90 620.79,549.55 621.87,555.33 C624.39,568.78 632.47,579.87 642.27,583.35 ZM 333.24 561.37 L 332.97 593.00 L 324.00 593.00 L 324.00 501.00 L 332.56 501.00 L 354.53 524.58 C366.61,537.54 377.62,549.39 379.00,550.91 C380.38,552.43 384.31,556.74 387.75,560.48 L 394.00 567.29 L 394.00 501.00 L 404.00 501.00 L 404.00 593.00 L 398.05 593.00 C394.00,593.00 391.84,592.55 391.30,591.60 C390.86,590.83 384.18,583.52 376.45,575.35 C368.72,567.18 355.89,553.58 347.95,545.12 L 333.50 529.73 ZM 550.98 471.00 C547.28,471.00 542.96,471.15 541.38,471.34 C539.79,471.53 535.80,471.48 532.50,471.24 L 526.50 470.80 L 496.00 424.77 C479.23,399.46 465.35,378.35 465.17,377.87 C464.98,377.39 471.96,377.01 480.67,377.01 L 496.50 377.03 L 502.41 386.26 C505.66,391.34 514.80,405.40 522.73,417.50 C530.65,429.60 541.77,446.59 547.43,455.25 L 557.72 471.00 ZM 489.76 588.42 L 487.50 592.84 L 477.50 593.17 C472.00,593.35 458.39,593.38 447.25,593.23 L 427.00 592.96 L 427.00 501.00 L 459.50 501.00 C477.38,501.00 492.00,501.17 492.00,501.37 C492.00,501.58 490.84,503.83 489.41,506.37 L 486.83 511.00 L 442.94 511.00 L 443.22 523.25 L 443.50 535.50 L 466.27 535.60 C478.79,535.66 489.29,535.96 489.60,536.27 C489.91,536.57 489.11,538.66 487.83,540.91 L 485.50 544.98 L 443.00 545.00 L 443.00 584.00 L 492.01 584.00 ZM 528.00 510.00 L 528.00 563.26 L 541.25 562.79 C553.14,562.38 555.04,562.05 559.76,559.64 C566.30,556.30 570.51,550.69 572.05,543.24 C574.29,532.48 570.44,520.51 563.04,515.14 C557.74,511.31 551.49,510.00 538.45,510.00 ZM 557.87 388.75 C557.80,395.21 557.46,405.66 557.12,411.96 L 556.50 423.43 L 541.94 401.46 C533.93,389.38 527.04,378.94 526.63,378.25 C526.04,377.27 529.36,377.00 541.94,377.00 L 558.00 377.00 ZM 493.82 469.25 C495.23,470.91 494.47,471.00 479.65,471.00 L 464.00 471.00 L 464.00 448.00 C464.00,435.35 464.18,425.00 464.41,425.00 C464.63,425.00 471.01,434.56 478.57,446.25 C486.13,457.94 492.99,468.29 493.82,469.25 Z"/>
+        </svg>
+      </a>
+    </header>
+
+    <main class="e404__main">
+      <div class="e404__num reveal" aria-hidden="true">4<em>0</em>4</div>
+      <p class="e404__eyebrow reveal">Ошибка 404</p>
+      <h1 class="e404__title reveal">Страница не&nbsp;найдена</h1>
+      <p class="e404__sub reveal">Возможно, она&nbsp;переехала или адрес введён неточно. Вернитесь на&nbsp;главную или загляните в&nbsp;каталоги красок и&nbsp;декоративных покрытий.</p>
+      <div class="e404__actions reveal">
+        <a href="/" class="btn btn--solid">На главную</a>
+        <a href="/#catalog" class="btn btn--ghost">Каталоги</a>
+      </div>
+    </main>
+
+    <footer class="e404__foot">
+      <span>© 2026 Студия&nbsp;NERO. Декоративные покрытия и&nbsp;краски</span>
+      <a href="/#contacts">Связаться&nbsp;→</a>
+    </footer>
+  </div>
+</body>
+</html>
