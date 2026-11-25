@@ -1408,6 +1408,11 @@
 
   /* ---------- декоративные покрытия: раздел → покрытие → фактура ---------- */
   function prodOf(key) { for (var i = 0; DECOR && i < DECOR.products.length; i++) if (DECOR.products[i].key === key) return DECOR.products[i]; return null; }
+  function showroomLooks() {
+    var out = [];
+    DECOR.products.forEach(function (p) { p.looks.forEach(function (l, i) { if (/^nr_/.test(l.src || "")) out.push({ prod: p, look: l, n: i + 1 }); }); });
+    return out;
+  }
   function renderDecor() {
     if (!DECOR || !dcatsEl) return;
     var en = isEn();
@@ -1420,7 +1425,17 @@
       b.textContent = (en ? c.en : c.ru) + " · " + n;
       dcatsEl.appendChild(b);
     });
+    /* «Шоурум» — все фактуры, снятые с образцов в шоуруме (src «nr_…»), одним списком, без выбора покрытия */
+    var show = showroomLooks();
+    if (show.length) {
+      var sb = document.createElement("button");
+      sb.type = "button"; sb.className = "cstudio__fam-btn cstudio__dcat" + (state.dcat === "showroom" ? " is-active" : "");
+      sb.setAttribute("data-dcat", "showroom"); sb.setAttribute("aria-pressed", state.dcat === "showroom" ? "true" : "false");
+      sb.textContent = (en ? "Showroom · " : "Шоурум · ") + show.length;
+      dcatsEl.appendChild(sb);
+    }
     dprodsEl.innerHTML = "";
+    dprodsEl.hidden = state.dcat === "showroom";
     DECOR.products.filter(function (p) { return p.cat === state.dcat; }).forEach(function (p) {
       var b = document.createElement("button");
       b.type = "button"; b.className = "cstudio__dprod" + (p.key === state.dprod ? " is-active" : "");
@@ -1438,7 +1453,18 @@
     });
     var pr = prodOf(state.dprod);
     dlooksEl.innerHTML = "";
-    if (pr) {
+    if (state.dcat === "showroom") {
+      if (dlooksTitle) dlooksTitle.textContent = (en ? "Showroom samples · " : "Образцы из шоурума · ") + show.length;
+      show.forEach(function (x) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "cstudio__swatch cstudio__look";
+        b.style.backgroundImage = "url(" + DECOR_DIR + x.look.id + "-t.jpg)";
+        b.setAttribute("data-look", x.look.id);
+        b.setAttribute("aria-label", x.prod.name + (en ? ", texture " : ", фактура ") + x.n);
+        b.title = x.prod.name + " · " + x.n;
+        dlooksEl.appendChild(b);
+      });
+    } else if (pr) {
       if (dlooksTitle) dlooksTitle.textContent = (en ? "Textures · " : "Фактуры · ") + pr.name;
       pr.looks.forEach(function (l, i) {
         var b = document.createElement("button");
@@ -1653,6 +1679,13 @@
   /* ---------- старт ---------- */
   selectFamily(state.family);
   famsEdge();
+  /* счётчик на вкладке — сколько фактур можно примерить (как оттенков у красок и артикулов у обоев), а не число покрытий */
+  (function () {
+    var cnt = document.querySelector("#cstudioTabDecor b"), n = 0;
+    if (!cnt || !DECOR) return;
+    DECOR.products.forEach(function (p) { n += p.looks.length; });
+    cnt.textContent = n;
+  })();
   if (!(DECOR && engine && engine.decorOK)) modeBtns.forEach(function (b) { if (b.getAttribute("data-mode") === "decor") b.hidden = true; });
   if (!(WP && engine && engine.decorOK)) modeBtns.forEach(function (b) { if (b.getAttribute("data-mode") === "wallpaper") b.hidden = true; });
   else modeBtns.forEach(function (b) { var n = b.getAttribute("data-mode") === "wallpaper" && b.querySelector("b"); if (n) n.textContent = fmtN(WP.items.length + (WP.catalog ? WP.catalog.n : 0)); });

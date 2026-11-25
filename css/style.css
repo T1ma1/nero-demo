@@ -1490,3 +1490,6 @@ body.menu-open .burger span:nth-child(2) { bottom: 7px; transform: rotate(-45deg
 
 @media (prefers-reduced-motion: reduce) { .cookie { transition: opacity .3s ease, visibility .3s; } }
 
+
+/* раздел «Шоурум» в примерке: список покрытий скрыт, фактуры — одним полем с прокруткой */
+.cstudio__dprods[hidden] { display: none; }
