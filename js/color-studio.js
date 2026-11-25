@@ -1065,7 +1065,7 @@
       chip.style.background = "url(" + DECOR_DIR + lk.look.id + "-t.jpg) center / cover";
       codeEl.textContent = fullOf(code);
       famEl.textContent = label(state.active) + " · " + (isEn() ? lk.prod.type_en : lk.prod.type_ru);
-      if (moreEl) { moreEl.href = "catalog/nero-" + lk.prod.key + ".html"; moreText("О покрытии →", "About the coating →"); }
+      if (moreEl) { moreEl.hidden = !!lk.prod.nopage; moreEl.href = "catalog/nero-" + lk.prod.key + ".html"; moreText("О покрытии →", "About the coating →"); }   // nopage — покрытие только в примерке, страницы в каталоге нет
     } else if (entry) {
       chip.style.backgroundColor = entry[1];
       codeEl.textContent = paintName(entry[0]);
